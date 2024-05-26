@@ -1,5 +1,5 @@
 .\venv_fiap\
 bkpyml.yml
 links.txt
-.\__pycache__\
-.\.mysql-data\
+__pycache__\
+.mysql-data\
