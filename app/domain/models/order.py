@@ -1,9 +1,10 @@
 from pydantic import BaseModel
 from typing import List, Optional
+from datetime import datetime
 
-class order(BaseModel):
-    id:int
-    nome:str 
-    cpf:str
-    email:str
-    status:str
+class Order(BaseModel):
+    id_pedido:int 
+    ds_status:str
+    dt_time:datetime
+    id_cliente:int
+
