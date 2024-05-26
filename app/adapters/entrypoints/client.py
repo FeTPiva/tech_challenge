@@ -2,22 +2,19 @@
 from app.adapters.repositories.client import ClientRepository
 from app.domain.models.client import Client
 from fastapi import APIRouter
+from typing import List
 
-router = APIRouter()
+router = APIRouter(tags=['Cliente'])
 
 
-
-@router.get("/client/{ds_cpf}")
+@router.get("/client/{ds_cpf}",response_model=Client)
 def read_client(ds_cpf: str):
-    resp = ClientRepository().get_client_by_cpf(ds_cpf)
-    return {"response": resp}
+    return ClientRepository().get_client_by_cpf(ds_cpf)
 
-@router.get("/clients")
-def read_client():
-    resp = ClientRepository().get_all_clients()
-    return {"response": resp}
+@router.get("/clients", response_model=List[Client])
+def read_clients():
+    return ClientRepository().get_all_clients()
 
 @router.post("/client/")
 def create_client(client: Client):
-    resp = ClientRepository().create_client(client)
-    return {"response": resp}
+    return {"id_cliente": ClientRepository().create_client(client)}

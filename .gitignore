@@ -3,3 +3,4 @@ bkpyml.yml
 links.txt
 __pycache__/
 .mysql-data/
+.wtf.py

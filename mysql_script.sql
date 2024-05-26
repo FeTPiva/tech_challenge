@@ -26,7 +26,7 @@ CREATE table itens_pedido(
   id_pedido int,
   id_produto int,
   primary key(id_itens_pedido)
-)
+);
 
 drop table if exists produto;
 CREATE TABLE produto(
@@ -70,11 +70,11 @@ VALUES ('x-tudo',1, 10.0, CURRENT_TIMESTAMP()),
 ('brigadeiro de ouro',4, 10.0, CURRENT_TIMESTAMP());
 
 
-insert into pedido (dt_pedido, ds_status, id_cliente)
-values (CURRENT_TIMESTAMP(), 'Recebido', 1);
-
 insert into pedido (dt_pedido, dt_entrega, ds_status, id_cliente) values
-("2050-12-01 10:00:00", "2050-12-01 12:00:00", 'Finalizado', 1);
+(CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Finalizado', 1);
+
+insert into pedido (dt_pedido, ds_status, id_cliente)
+values (CURRENT_TIMESTAMP(), 'Recebido', 1), (CURRENT_TIMESTAMP(), 'Recebido', 1);
 
 INSERT INTO itens_pedido (id_pedido, id_produto)
-VALUES (1,1), (1,2),(2,3)
+VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);

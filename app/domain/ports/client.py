@@ -13,13 +13,5 @@ class ClientPort(ABC):
         pass
 
     @abstractmethod
-    def create_client(self, client: Client) -> Client:
+    def create_client(self, client: Client) -> None:
         pass
-'''
-    @abstractmethod
-    def update_client(self, client: Client) -> Client | None:
-        pass
-
-    @abstractmethod
-    def delete_client(self, ds_cpf: int):
-        pass'''

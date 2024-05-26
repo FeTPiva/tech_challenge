@@ -4,6 +4,7 @@ from datetime import datetime
 from app.domain.models.client import Client
 from app.domain.ports.client import ClientPort
 from app.configs.db_info import conf_db
+import json
 
 
 class ClientRepository(ClientPort):
@@ -16,9 +17,12 @@ class ClientRepository(ClientPort):
         cursor = self.connection.cursor()
         cursor.execute(f"SELECT * FROM cliente")
         myresult = cursor.fetchall()
+        
+        fields = [field_md[0] for field_md in cursor.description]
+        result = [dict(zip(fields,row)) for row in myresult]
 
-        if myresult:
-            return myresult #Client.model_validate(myresult)
+        if result:
+            return result
         return None   
     
     
@@ -30,11 +34,14 @@ class ClientRepository(ClientPort):
 
         myresult = cursor.fetchone()
 
-        if myresult:
-            return myresult #Client.model_validate(myresult)
+        fields = [field_md[0] for field_md in cursor.description]
+        result = dict(zip(fields,myresult))
+
+        if result:
+            return result
         return None
     
-    def create_client(self, client: Client) -> Client:
+    def create_client(self, client: Client) -> None:
         ds_nome = client.ds_nome
         ds_cpf = client.ds_cpf
         ds_email = client.ds_email
@@ -47,7 +54,7 @@ class ClientRepository(ClientPort):
         cursor.execute(query, values)
         self.connection.commit()
 
-        return None
+        return cursor.lastrowid
 
     
 

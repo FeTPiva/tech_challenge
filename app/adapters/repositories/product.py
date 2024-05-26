@@ -17,8 +17,11 @@ class ProductRepository(ProductPort):
         cursor.execute(f"SELECT * FROM produto")
         myresult = cursor.fetchall()
 
-        if myresult:
-            return myresult
+        fields = [field_md[0] for field_md in cursor.description]
+        result = [dict(zip(fields,row)) for row in myresult]
+
+        if result:
+            return result
         return None
     
     
@@ -28,10 +31,13 @@ class ProductRepository(ProductPort):
 
         cursor.execute(f"SELECT * FROM produto where id_produto = {id_produto}")
 
-        myresult = cursor.fetchall()
+        myresult = cursor.fetchone()
 
-        if myresult:
-            return myresult
+        fields = [field_md[0] for field_md in cursor.description]
+        result = dict(zip(fields, myresult))
+
+        if result:
+            return result
         return None
     
     
@@ -42,12 +48,16 @@ class ProductRepository(ProductPort):
         cursor.execute(f"SELECT * FROM produto where id_categoria = {id_categoria}" )
 
         myresult = cursor.fetchall()
+        
+        fields = [field_md[0] for field_md in cursor.description]
+        result = [dict(zip(fields,row)) for row in myresult]
 
-        if myresult:
-            return myresult
+        if result:
+            return result
         return None
     
-    def create_product(self, produto: Product) -> Product:
+    
+    def create_product(self, produto: Product) -> int:
         ds_nome = produto.ds_nome
         id_categoria = produto.id_categoria
         val_preco = produto.val_preco
@@ -60,7 +70,7 @@ class ProductRepository(ProductPort):
         cursor.execute(query, values)
         self.connection.commit()
 
-        return None
+        return cursor.lastrowid
         
    
     def update_product(self, produto: Product) -> Product | None:

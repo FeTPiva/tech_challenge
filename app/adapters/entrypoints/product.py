@@ -2,24 +2,25 @@
 from app.adapters.repositories.product import ProductRepository
 from app.domain.models.product import Product
 from fastapi import APIRouter
+from typing import List
 
-router = APIRouter()
+router = APIRouter(tags=['Produtos'])
 
 
-@router.get("/products")
+@router.get("/products", response_model=List[Product])
 def read_products():
-    resp = ProductRepository().get_all_products()
-    return {"response": resp}
+    return ProductRepository().get_all_products()
 
-@router.get("/product/{id_categoria}")
+
+@router.get("/product/{id_categoria}", response_model=List[Product])
 def read_product(id_categoria:int):
-    resp = ProductRepository().get_product_by_category(id_categoria)
-    return {"response": resp}
+    return ProductRepository().get_product_by_category(id_categoria)
+     
 
 @router.post("/product/")
 def create_product(product:Product):
-    resp = ProductRepository().create_product(product)
-    return {"response": resp}
+    return {"id_produto": ProductRepository().create_product(product)}
+
 
 @router.put("/product/")
 def update_product(product:Product):
