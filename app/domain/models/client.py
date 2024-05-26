@@ -1,8 +1,9 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
-class client(BaseModel):
-    id:int
-    nome: str 
-    cpf:str
-    email:str
+
+class Client(BaseModel):
+    id_cliente: Optional[int] = Field(1)
+    ds_nome: str 
+    ds_cpf:str
+    ds_email:str

@@ -1,9 +1,14 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
+from datetime import datetime
 
-class order(BaseModel):
-    id:int
-    nome:str 
-    cpf:str
-    email:str
-    status:str
+class Order(BaseModel):
+    id_pedido:Optional[int] = Field(0)
+    ds_status:str
+    dt_pedido:Optional[datetime] = Field(datetime.now())
+    id_cliente:int
+    dt_entrega:Optional[datetime] = Field(datetime.now())
+
+class OrderItens(BaseModel):
+    id_pedido:int
+    id_produto:int

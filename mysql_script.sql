@@ -1,4 +1,4 @@
-  
+SET sql_mode = '';
  
 drop table if exists cliente;
 
@@ -13,10 +13,19 @@ drop table if exists cliente;
 drop table if exists pedido ;
 CREATE TABLE pedido(
 	id_pedido int not null AUTO_INCREMENT,
-    dt_time TIMESTAMP,
+    dt_pedido TIMESTAMP,
+    dt_entrega TIMESTAMP,
     ds_status varchar(45),
-    id_cliente int,
+    id_cliente int,    
     primary key (id_pedido)
+);
+
+drop table if exists itens_pedido;
+CREATE table itens_pedido(
+  id_itens_pedido int not null AUTO_INCREMENT,
+  id_pedido int,
+  id_produto int,
+  primary key(id_itens_pedido)
 );
 
 drop table if exists produto;
@@ -25,6 +34,7 @@ CREATE TABLE produto(
     ds_nome varchar(100),
     id_categoria int,
     val_preco float,
+    dt_atualizacao TIMESTAMP,
     primary key (id_produto)
 );
 
@@ -50,12 +60,21 @@ insert into categoria_produtos
 VALUES ('lanche'),('acompanhamento'),('bebida'), ('sobremesa');
 
 insert into produto
-(ds_nome, id_categoria, val_preco)
-VALUES ('x-tudo',1, 10.0),
-('x-veggie',1, 5.5),
-('fritas',2, 5.0),
-('arroz',2, 5.0),
-('suco',3, 6.0),
-('guarana',3, 5.0),
-('brigadeiro de ouro',4, 10.0);
+(ds_nome, id_categoria, val_preco, dt_atualizacao)
+VALUES ('x-tudo',1, 10.0, CURRENT_TIMESTAMP()),
+('x-veggie',1, 5.5, CURRENT_TIMESTAMP()),
+('fritas',2, 5.0, CURRENT_TIMESTAMP()),
+('arroz',2, 5.0, CURRENT_TIMESTAMP()),
+('suco',3, 6.0, CURRENT_TIMESTAMP()),
+('guarana',3, 5.0, CURRENT_TIMESTAMP()),
+('brigadeiro de ouro',4, 10.0, CURRENT_TIMESTAMP());
 
+
+insert into pedido (dt_pedido, dt_entrega, ds_status, id_cliente) values
+(CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Finalizado', 1);
+
+insert into pedido (dt_pedido, ds_status, id_cliente)
+values (CURRENT_TIMESTAMP(), 'Recebido', 1), (CURRENT_TIMESTAMP(), 'Recebido', 1);
+
+INSERT INTO itens_pedido (id_pedido, id_produto)
+VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);
