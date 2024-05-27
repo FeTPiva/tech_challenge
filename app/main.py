@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.adapters.entrypoints import client, product, order
+from .adapters.entrypoints import client, product, order
 
 
 fast_app = FastAPI(title="Tech Challenge Fase 1")
@@ -17,4 +17,5 @@ fast_app.include_router(order.router)
 
 
 
-
+#docker build -t apiv1 .
+#docker run --name test-api apiv1

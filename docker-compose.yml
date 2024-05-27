@@ -13,3 +13,17 @@ services:
       - '3306'
     volumes:
       - "./mysql_script.sql:/docker-entrypoint-initdb.d/1.sql"
+  api_tech_challenge:
+    build:
+         context: .
+         dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    enviroment:
+      - MYSQL_DB=db
+      - MYSQL_PASS=password
+      - MYSQL_USER=root
+      - MYSQL_HOST=localhost
+    depends_on:
+      - database
+
