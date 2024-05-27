@@ -1,9 +1,23 @@
+
 version: '3.3'
+
 services:
+  
+  api_tech_challenge:
+    container_name: fastapi_app
+    build: .
+    restart: always
+    ports:
+         - "8000:8000"
+    depends_on:
+      - database
+    
+
   database:
     image: mysql:5.7
     container_name: mysql
     restart: always
+    hostname: test
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_ROOT_PASSWORD: 'password'
@@ -13,17 +27,4 @@ services:
       - '3306'
     volumes:
       - "./mysql_script.sql:/docker-entrypoint-initdb.d/1.sql"
-  api_tech_challenge:
-    build:
-         context: .
-         dockerfile: Dockerfile
-    volumes:
-      - .:/code
-    enviroment:
-      - MYSQL_DB=db
-      - MYSQL_PASS=password
-      - MYSQL_USER=root
-      - MYSQL_HOST=localhost
-    depends_on:
-      - database
 

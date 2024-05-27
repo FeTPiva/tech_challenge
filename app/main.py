@@ -16,6 +16,3 @@ fast_app.include_router(order.router)
 
 
 
-
-#docker build -t apiv1 .
-#docker run --name test-api apiv1

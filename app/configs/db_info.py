@@ -7,13 +7,10 @@ class conf_db():
 
     def con_mysql(self):
         mydb = mysql.connector.connect(
-            host="localhost",
+            host="test",
             user="root",
             password="password",
             database="db"
             )
         
         return mydb
-
-
-
