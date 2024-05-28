@@ -1,7 +1,7 @@
 up:
 	docker compose up -d
 
-rebuild:
+build:
 	docker compose up -d --build
 
 down:
