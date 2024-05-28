@@ -57,7 +57,7 @@ VALUES
 
 insert into categoria_produtos
 (ds_nome)
-VALUES ('lanche'),('acompanhamento'),('bebida'), ('sobremesa');
+VALUES ('Lanche'),('Acompanhamento'),('Bebida'), ('Sobremesa');
 
 insert into produto
 (ds_nome, id_categoria, val_preco, dt_atualizacao)
