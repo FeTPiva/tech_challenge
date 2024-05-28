@@ -17,7 +17,7 @@ Miro com DDD e Event Storming
 
 Buildando a aplicação
 
-``` docker compose -d --build ``` 
+``` docker compose up -d --build ``` 
 
 Acessando o swagger
 
