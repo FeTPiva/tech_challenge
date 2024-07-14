@@ -1,5 +1,5 @@
 
-from app.adapters.repositories.product import ProductRepository
+from app.adapters.gateway.product import ProductRepository
 from app.domain.models.product import Product
 from fastapi import APIRouter
 from typing import List

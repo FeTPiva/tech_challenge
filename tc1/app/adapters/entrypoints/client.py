@@ -1,5 +1,5 @@
 
-from app.adapters.repositories.client import ClientRepository
+from app.adapters.gateway.client import ClientRepository
 from app.domain.models.client import Client
 from fastapi import APIRouter
 from typing import List

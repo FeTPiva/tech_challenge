@@ -1,1 +1,0 @@
-from app.adapters.entrypoints import client, product, order

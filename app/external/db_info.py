@@ -9,7 +9,7 @@ class conf_db():
 
     def con_mysql(self):
         mydb = mysql.connector.connect(
-            host="test",
+            host="localhost",
             user="root",
             password="password",
             database="db"
@@ -43,16 +43,13 @@ class conf_db():
     def insert_data(self, table:str, data : dict):
         connection = self.con_mysql()
 
-        fields = ','.join(data.keys())
-        values = ','.join(str(v) for v in data.values())
+        fields = ','.join(str(d) for d in data.keys())
+        values = "'"+"', '".join(str(v) for v in data.values())+"'"
 
         cursor = connection.cursor()
-
-        query = "INSERT INTO %s ( %s ) VALUES (%s)"
-        values =  (table, fields, values)
-        
-        cursor.execute(query, values)
-        self.connection.commit()
+       
+        cursor.execute(f"INSERT INTO {table} ( {fields} ) VALUES ({values})")
+        connection.commit()
 
         return cursor.lastrowid
     
@@ -62,28 +59,25 @@ class conf_db():
         cursor = connection.cursor()
 
         cursor.execute(f"delete from {table} where {field} = {value}" )
-        self.connection.commit()
-
+        connection.commit()
 
         pass
 
     def update_data(self, table, data, filter_field, value):
+        connection = self.con_mysql()
 
-
-        cursor = self.connection.cursor()
+        cursor = connection.cursor()
 
         condition = ['dt_atualizacao = CURRENT_TIMESTAMP()']
         for key, val in data.items():
             condition.append(f'{key} = {val}')
 
-        update_cond = ', '.join(condition)
-
+        update_cond = "', '".join(condition)
         
-        query = """update %s 
-        set %s 
-        where %s = %s"""
-        values = (table, update_cond, filter_field, value)
-        cursor.execute(query, values)
-        self.connection.commit()
+        query = f"update {table} set {update_cond} where {filter_field} = {value}"
+
+        cursor.execute(query)
+        connection.commit()
+        
         pass
 

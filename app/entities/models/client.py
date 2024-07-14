@@ -7,6 +7,3 @@ class Client(BaseModel):
     ds_nome: str 
     ds_cpf:str
     ds_email:str
-
-    class Config:
-        orm_mode = True

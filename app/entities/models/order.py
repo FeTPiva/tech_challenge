@@ -9,13 +9,6 @@ class Order(BaseModel):
     id_cliente:int
     dt_entrega:Optional[datetime] = Field(datetime.now())
 
-    class Config:
-        orm_mode = True
-        
-
 class OrderItens(BaseModel):
     id_pedido:int
     id_produto:int
-
-    class Config:
-        orm_mode = True
