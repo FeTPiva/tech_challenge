@@ -1,7 +1,4 @@
 .\venv_fiap\
-bkpyml.yml
-links.txt
 __pycache__/
 .mysql-data/
-.wtf.py
-tech_challenge.zip
+\testes_code
