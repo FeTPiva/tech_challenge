@@ -1,7 +1,6 @@
 from datetime import datetime
 from entities.models.client import Client
-from external.db_info import conf_db
-import json
+from external.db_info import ConfDB
 
 
 class ClientGateway():
@@ -11,15 +10,15 @@ class ClientGateway():
 
 
     def get_all_clients(self)  -> Client | None:
-        return conf_db().select_all_data('cliente')  
+        return ConfDB().select_all_data('cliente')  
     
     
     def get_client_by_cpf(self, ds_cpf: int) -> Client | None:       
-        return conf_db().select_one_value(table='cliente', field='ds_cpf',value=ds_cpf)
+        return ConfDB().select_one_value(table='cliente', field='ds_cpf',value=ds_cpf)
     
     
     def create_client(self, client: Client) -> None:
-        return conf_db().insert_data(table='cliente', data=client)
+        return ConfDB().insert_data(table='cliente', data=client)
 
     
 

@@ -51,8 +51,8 @@ INSERT INTO cliente
     ds_nome ,
     ds_email )
 VALUES
-  ('123', 'Fernanda Piva', 'xxxxx'), 
-  ('456', 'fulanito', 'abc@abc');
+  ('007.029.330-90', 'Fernanda Piva', 'xxxxx'), 
+  ('080.850.056-20', 'fulanito', 'abc@abc');
 
 
 insert into categoria_produtos

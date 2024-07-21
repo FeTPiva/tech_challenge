@@ -1,9 +1,10 @@
 
 import mysql.connector
 import os
+from repositories.db_info import ConfDBRepository
 
 
-class conf_db():
+class ConfDB(ConfDBRepository):
     def __init__(self):
         pass
 
@@ -32,12 +33,20 @@ class conf_db():
         connection = self.con_mysql()
         cursor = connection.cursor()
 
-        cursor.execute(f"SELECT * FROM {table} where {field} = {value}")
+        print('\n\n\n\n', f"SELECT * FROM {table} where {field} = {value}", "\n\n\n\n")
+
+        cursor.execute(f"SELECT * FROM {table} where {field} = '{value}'")
 
         myresult = cursor.fetchone()
+        print('\n\n\n\n', myresult, "\n\n\n\n")
 
-        fields = [field_md[0] for field_md in cursor.description]
-        return dict(zip(fields,myresult))
+        fields = [field_md[0] for field_md in cursor.description]  
+
+        if myresult:
+            
+            return dict(zip(fields,myresult))
+        else:
+            return None
         
     
     def insert_data(self, table:str, data : dict):
