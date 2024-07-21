@@ -12,11 +12,11 @@ drop table if exists cliente;
 
 drop table if exists pedido ;
 CREATE TABLE pedido(
-	id_pedido int not null AUTO_INCREMENT,
-    dt_pedido TIMESTAMP,
-    dt_entrega TIMESTAMP,
+	  id_pedido int not null,
+    dt_pedido TIMESTAMP NULL DEFAULT NULL,
     ds_status varchar(45),
-    id_cliente int,    
+    id_cliente int,
+    dt_atualizacao TIMESTAMP,
     primary key (id_pedido)
 );
 
@@ -45,6 +45,14 @@ CREATE TABLE categoria_produtos(
     primary key (id_categoria)    
 );
 
+drop table if exists pagamento;
+CREATE table pagamento(
+  id_pagamento int not null AUTO_INCREMENT,
+  id_pedido int not null AUTO_INCREMENT,
+  val_valor float,
+  ds_status TINYINT(1),
+  primary key(id_pagamento)
+);
 
 INSERT INTO cliente
   ( ds_cpf,
@@ -70,11 +78,14 @@ VALUES ('x-tudo',1, 10.0, 'Melhor x-tudo do mundo'),
 ('brigadeiro de ouro',4, 20.0, 'brigadeiro que vale o preço pago');
 
 
-insert into pedido (dt_pedido, dt_entrega, ds_status, id_cliente) values
-(CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Finalizado', 1);
-
-insert into pedido (dt_pedido, ds_status, id_cliente)
-values (CURRENT_TIMESTAMP(), 'Recebido', 1), (CURRENT_TIMESTAMP(), 'Recebido', 1);
+insert into pedido (id_pedido, dt_pedido, ds_status, id_cliente, dt_atualizacao) values
+(1, CURRENT_TIMESTAMP(), 'Finalizado', 1, CURRENT_TIMESTAMP()),
+(2, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP()),
+(3, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP());
 
 INSERT INTO itens_pedido (id_pedido, id_produto)
 VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);
+
+
+INSERT INTO pagamento (val_valor, ds_status)
+VALUES (8000.5,0), (14.1,1), (22.5,1);

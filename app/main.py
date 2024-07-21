@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from entrypoints.client import router as client_router
 from entrypoints.product import router as product_router
+from entrypoints.order import router as order_router
 
 
 fast_app = FastAPI(title="Tech Challenge Fase 2")
@@ -13,7 +14,7 @@ async def root():
 
 fast_app.include_router(client_router)
 fast_app.include_router(product_router)
-#fast_app.include_router(order.router)
+fast_app.include_router(order_router)
 
 
 

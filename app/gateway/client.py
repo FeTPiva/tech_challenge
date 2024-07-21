@@ -9,7 +9,7 @@ class ClientGateway():
         pass
 
 
-    def get_all_clients(self)  -> Client | None:
+    def get_all_clients(self) -> Client | None:
         return ConfDB().select_all_data('cliente')  
     
     

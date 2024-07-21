@@ -1,1 +1,1 @@
-from gateway import client
+from gateway import client, product, order, order_itens

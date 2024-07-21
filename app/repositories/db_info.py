@@ -20,7 +20,7 @@ class ConfDBRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def insert_data(self) -> int | Any | None:
+    def insert_data(self) -> int | None:
         pass
 
     @abc.abstractmethod

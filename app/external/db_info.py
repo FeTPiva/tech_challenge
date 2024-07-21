@@ -36,13 +36,9 @@ class ConfDB(ConfDBRepository):
     def select_with_filter(self, table, field, value):
         connection = self.con_mysql()
         cursor = connection.cursor()
-
-        #print('\n\n\n\n', f"SELECT * FROM {table} where {field} = {value}", "\n\n\n\n")
-
         cursor.execute(f"SELECT * FROM {table} where {field} = '{value}'")
 
         myresult = cursor.fetchall()
-        #print('\n\n\n\n', myresult, "\n\n\n\n")
 
         fields = [field_md[0] for field_md in cursor.description]  
 
@@ -61,9 +57,7 @@ class ConfDB(ConfDBRepository):
         fields = ','.join(str(d) for d in data.keys())
         values = "'"+"', '".join(str(v) for v in data.values())+"'"
 
-        cursor = connection.cursor()
-        print(f"INSERT INTO {table} ( {fields} ) VALUES ({values})")
-       
+        cursor = connection.cursor()       
         cursor.execute(f"INSERT INTO {table} ( {fields} ) VALUES ({values})")
         connection.commit()
 

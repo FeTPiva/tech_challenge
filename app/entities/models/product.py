@@ -10,3 +10,5 @@ class Product(BaseModel):
     val_preco:float = Field(10.0)
     ds_descricao: str
 
+class ProductOrder(BaseModel):
+    id_produto: int
