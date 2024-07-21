@@ -34,7 +34,7 @@ CREATE TABLE produto(
     ds_nome varchar(100),
     id_categoria int,
     val_preco float,
-    dt_atualizacao TIMESTAMP,
+    ds_descricao varchar(100),
     primary key (id_produto)
 );
 
@@ -57,17 +57,17 @@ VALUES
 
 insert into categoria_produtos
 (ds_nome)
-VALUES ('Lanche'),('Acompanhamento'),('Bebida'), ('Sobremesa');
+VALUES ('Lanche'),('Acompanhamento'), ('Bebida'), ('Sobremesa');
 
 insert into produto
-(ds_nome, id_categoria, val_preco, dt_atualizacao)
-VALUES ('x-tudo',1, 10.0, CURRENT_TIMESTAMP()),
-('x-veggie',1, 5.5, CURRENT_TIMESTAMP()),
-('fritas',2, 5.0, CURRENT_TIMESTAMP()),
-('arroz',2, 5.0, CURRENT_TIMESTAMP()),
-('suco',3, 6.0, CURRENT_TIMESTAMP()),
-('guarana',3, 5.0, CURRENT_TIMESTAMP()),
-('brigadeiro de ouro',4, 10.0, CURRENT_TIMESTAMP());
+(ds_nome, id_categoria, val_preco, ds_descricao)
+VALUES ('x-tudo',1, 10.0, 'Melhor x-tudo do mundo'),
+('x-veggie',1, 5.5, 'É vegetariano? td bem, temos um x-veggie pra você'),
+('fritas',2, 5.0, 'Melhor fritas do mundo'),
+('arroz',2, 5.0, 'Melhor arroz do mundo'),
+('suco',3, 6.0, 'suco padrão de laranja'),
+('guarana',3, 5.0, 'guaraná do Brasil'),
+('brigadeiro de ouro',4, 20.0, 'brigadeiro que vale o preço pago');
 
 
 insert into pedido (dt_pedido, dt_entrega, ds_status, id_cliente) values

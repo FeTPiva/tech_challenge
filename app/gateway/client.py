@@ -14,7 +14,7 @@ class ClientGateway():
     
     
     def get_client_by_cpf(self, ds_cpf: int) -> Client | None:       
-        return ConfDB().select_one_value(table='cliente', field='ds_cpf',value=ds_cpf)
+        return ConfDB().select_with_filter(table='cliente', field='ds_cpf',value=ds_cpf)
     
     
     def create_client(self, client: Client) -> None:

@@ -26,36 +26,43 @@ class ConfDB(ConfDBRepository):
         myresult = cursor.fetchall()
         
         fields = [field_md[0] for field_md in cursor.description]
-        return [dict(zip(fields,row)) for row in myresult]
+
+        if myresult:            
+            return [dict(zip(fields,row)) for row in myresult]
+        else:
+            return None
 
 
-    def select_one_value(self, table, field, value):
+    def select_with_filter(self, table, field, value):
         connection = self.con_mysql()
         cursor = connection.cursor()
 
-        print('\n\n\n\n', f"SELECT * FROM {table} where {field} = {value}", "\n\n\n\n")
+        #print('\n\n\n\n', f"SELECT * FROM {table} where {field} = {value}", "\n\n\n\n")
 
         cursor.execute(f"SELECT * FROM {table} where {field} = '{value}'")
 
-        myresult = cursor.fetchone()
-        print('\n\n\n\n', myresult, "\n\n\n\n")
+        myresult = cursor.fetchall()
+        #print('\n\n\n\n', myresult, "\n\n\n\n")
 
         fields = [field_md[0] for field_md in cursor.description]  
 
         if myresult:
             
-            return dict(zip(fields,myresult))
+            return [dict(zip(fields,row)) for row in myresult]
         else:
             return None
         
     
     def insert_data(self, table:str, data : dict):
         connection = self.con_mysql()
+        print(data)
+
 
         fields = ','.join(str(d) for d in data.keys())
         values = "'"+"', '".join(str(v) for v in data.values())+"'"
 
         cursor = connection.cursor()
+        print(f"INSERT INTO {table} ( {fields} ) VALUES ({values})")
        
         cursor.execute(f"INSERT INTO {table} ( {fields} ) VALUES ({values})")
         connection.commit()
@@ -66,8 +73,11 @@ class ConfDB(ConfDBRepository):
         connection = self.con_mysql()
         
         cursor = connection.cursor()
-
+        
         cursor.execute(f"delete from {table} where {field} = {value}" )
+        
+        #print(cursor.lastrowid, cursor.rowcount, cursor.warnings) pensar boto algum erro aqui ou n
+
         connection.commit()
 
         pass
@@ -77,11 +87,11 @@ class ConfDB(ConfDBRepository):
 
         cursor = connection.cursor()
 
-        condition = ['dt_atualizacao = CURRENT_TIMESTAMP()']
+        condition = []
         for key, val in data.items():
-            condition.append(f'{key} = {val}')
+            condition.append(f"{key} = '{val}'")
 
-        update_cond = "', '".join(condition)
+        update_cond = ", ".join(condition)
         
         query = f"update {table} set {update_cond} where {filter_field} = {value}"
 

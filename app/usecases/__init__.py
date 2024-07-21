@@ -1,1 +1,1 @@
-from usecases import client
+from usecases import client, product

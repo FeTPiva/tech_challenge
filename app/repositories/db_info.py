@@ -16,7 +16,7 @@ class ConfDBRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def select_one_value(self) -> Dict:
+    def select_with_filter(self) -> List:
         pass
 
     @abc.abstractmethod

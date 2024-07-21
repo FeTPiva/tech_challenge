@@ -2,12 +2,12 @@
 from usecases.client import ClientUseCase
 from entities.models.client import Client
 from entities.response_models.client import ReadClientResponse, CreateClientResponse
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from typing import List
 
 router = APIRouter(tags=['Cliente'])
 
-@router.get("/client/{ds_cpf}", response_model=ReadClientResponse)
+@router.get("/client/{ds_cpf}", response_model=List[ReadClientResponse])
 def read_client(ds_cpf: str):
     return ClientUseCase().get_client_by_cpf(ds_cpf)
 

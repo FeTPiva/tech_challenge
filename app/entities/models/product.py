@@ -8,5 +8,5 @@ class Product(BaseModel):
     ds_nome: str
     id_categoria:int = Field(1)
     val_preco:float = Field(10.0)
-    #dt_atualizacao: Optional[datetime] = Field(datetime.now())
+    ds_descricao: str
 
