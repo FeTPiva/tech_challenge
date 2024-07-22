@@ -1,6 +1,6 @@
 
 from app.adapters.entrypoints.model.order_schema import OrderCreation, OrderDetails
-from app.adapters.repositories.order import OrderRepository
+from app.adapters.gateway.order import OrderRepository
 from app.domain.models.order import Order
 from fastapi import APIRouter
 from typing import List

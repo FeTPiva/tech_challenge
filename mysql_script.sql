@@ -12,11 +12,11 @@ drop table if exists cliente;
 
 drop table if exists pedido ;
 CREATE TABLE pedido(
-	id_pedido int not null AUTO_INCREMENT,
-    dt_pedido TIMESTAMP,
-    dt_entrega TIMESTAMP,
+	  id_pedido int not null,
+    dt_pedido TIMESTAMP NULL DEFAULT NULL,
     ds_status varchar(45),
-    id_cliente int,    
+    id_cliente int,
+    dt_atualizacao TIMESTAMP,
     primary key (id_pedido)
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE produto(
     ds_nome varchar(100),
     id_categoria int,
     val_preco float,
-    dt_atualizacao TIMESTAMP,
+    ds_descricao varchar(100),
     primary key (id_produto)
 );
 
@@ -45,36 +45,46 @@ CREATE TABLE categoria_produtos(
     primary key (id_categoria)    
 );
 
+drop table if exists pagamento;
+CREATE table pagamento(
+  id_pagamento int not null AUTO_INCREMENT,
+  val_valor float,
+  ds_status TINYINT(1),
+  id_pagamento_externo int,
+  primary key(id_pagamento)
+);
 
 INSERT INTO cliente
   ( ds_cpf,
     ds_nome ,
     ds_email )
 VALUES
-  ('123', 'Fernanda Piva', 'xxxxx'), 
-  ('456', 'fulanito', 'abc@abc');
-
+  ('007.029.330-90', 'Fernanda Piva', 'xxxxx'), 
+  ('080.850.056-20', 'fulanito', 'abc@abc');
 
 insert into categoria_produtos
 (ds_nome)
-VALUES ('Lanche'),('Acompanhamento'),('Bebida'), ('Sobremesa');
+VALUES ('Lanche'),('Acompanhamento'), ('Bebida'), ('Sobremesa');
 
 insert into produto
-(ds_nome, id_categoria, val_preco, dt_atualizacao)
-VALUES ('x-tudo',1, 10.0, CURRENT_TIMESTAMP()),
-('x-veggie',1, 5.5, CURRENT_TIMESTAMP()),
-('fritas',2, 5.0, CURRENT_TIMESTAMP()),
-('arroz',2, 5.0, CURRENT_TIMESTAMP()),
-('suco',3, 6.0, CURRENT_TIMESTAMP()),
-('guarana',3, 5.0, CURRENT_TIMESTAMP()),
-('brigadeiro de ouro',4, 10.0, CURRENT_TIMESTAMP());
+(ds_nome, id_categoria, val_preco, ds_descricao)
+VALUES ('x-tudo',1, 10.0, 'Melhor x-tudo do mundo'),
+('x-veggie',1, 5.5, 'É vegetariano? td bem, temos um x-veggie pra você'),
+('fritas',2, 5.0, 'Melhor fritas do mundo'),
+('arroz',2, 5.0, 'Melhor arroz do mundo'),
+('suco',3, 6.0, 'suco padrão de laranja'),
+('guarana',3, 5.0, 'guaraná do Brasil'),
+('brigadeiro de ouro',4, 20.0, 'brigadeiro que vale o preço pago');
 
 
-insert into pedido (dt_pedido, dt_entrega, ds_status, id_cliente) values
-(CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP(), 'Finalizado', 1);
-
-insert into pedido (dt_pedido, ds_status, id_cliente)
-values (CURRENT_TIMESTAMP(), 'Recebido', 1), (CURRENT_TIMESTAMP(), 'Recebido', 1);
+insert into pedido (id_pedido, dt_pedido, ds_status, id_cliente, dt_atualizacao) values
+(1, CURRENT_TIMESTAMP(), 'Finalizado', 1, CURRENT_TIMESTAMP()),
+(2, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP()),
+(3, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP());
 
 INSERT INTO itens_pedido (id_pedido, id_produto)
 VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);
+
+
+INSERT INTO pagamento (val_valor, ds_status, id_pagamento_externo)
+VALUES (8000.5,0,1), (14.1,1,1), (22.5,1,1);

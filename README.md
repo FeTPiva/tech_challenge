@@ -1,7 +1,7 @@
 # Tech challenge - fase 1 - grupo 2
 
 ## O que é o projeto?
-Este é o repositório do trabalho da fase 1 de Software Architecture da Fiap
+Este é o repositório dos projetos de Software Architecture da Fiap
 
 
 ## Objetivos
@@ -15,7 +15,7 @@ Miro com DDD e Event Storming
 
 ```https://miro.com/app/board/uXjVKFny-xg=/?share_link_id=986615193565 ```
 
-Buildando a aplicação
+Buildando a aplicação (docker)
 
 ``` docker compose up -d --build ``` 
 
