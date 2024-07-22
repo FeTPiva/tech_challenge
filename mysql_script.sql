@@ -48,9 +48,9 @@ CREATE TABLE categoria_produtos(
 drop table if exists pagamento;
 CREATE table pagamento(
   id_pagamento int not null AUTO_INCREMENT,
-  id_pedido int not null AUTO_INCREMENT,
   val_valor float,
   ds_status TINYINT(1),
+  id_pagamento_externo int,
   primary key(id_pagamento)
 );
 
@@ -61,7 +61,6 @@ INSERT INTO cliente
 VALUES
   ('007.029.330-90', 'Fernanda Piva', 'xxxxx'), 
   ('080.850.056-20', 'fulanito', 'abc@abc');
-
 
 insert into categoria_produtos
 (ds_nome)
@@ -87,5 +86,5 @@ INSERT INTO itens_pedido (id_pedido, id_produto)
 VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);
 
 
-INSERT INTO pagamento (val_valor, ds_status)
-VALUES (8000.5,0), (14.1,1), (22.5,1);
+INSERT INTO pagamento (val_valor, ds_status, id_pagamento_externo)
+VALUES (8000.5,0,1), (14.1,1,1), (22.5,1,1);

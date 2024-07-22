@@ -9,20 +9,31 @@ class PaymentGateway():
     def __init__(self):
         pass
 
-    def new_payment(self, dados_pagamento: Payment) -> None:
-        resp = ConfDB().insert_data(table='pagamento', data=dados_pagamento)
-        print(resp)
-
-        qr = ConfMeLi().gera_qr_code()
-
-        return 0
+    def new_payment_db(self, payment_data: Payment) -> None:
+        return ConfDB().insert_data(table='pagamento', data=payment_data)
+    
+    
+    def new_payment_mp(self, payment_data: Payment) -> int:
+        external_payment_id = ConfMeLi().create_payment(payment_data)
+        return external_payment_id
+    
+    
+    def generate_qr_code(self, external_id:int) -> str:
+        return ConfMeLi().generate_qr_code(external_id)
         
     
-    def verify_payment(self, id_categoria: int) -> Payment | None:
-        return ConfDB().select_with_filter(table='produto', field='id_categoria', value=id_categoria)
+    def verify_payment_external(self, external_id: int) -> bool:
+        return ConfMeLi().verify_payment_external(external_id)
+    
+    def verify_payment_internal(self, pay_id: int) -> Payment | None:
+        return ConfDB().select_with_filter(table='pagamento', field='id_pagamento', value=pay_id)
     
 
-    def update_payment(self, id_categoria: int) -> Payment | None:
-        return ConfDB().select_with_filter(table='produto', field='id_categoria', value=id_categoria)
+    def update_payment(self, pay: dict, field:str, value:int) -> Payment | None:
+        return ConfDB().update_data(table='pagamento',data=pay, filter_field=field, value = value)
+    
+    def get_all_payments(self):
+        return ConfDB().select_all_data(table='pagamento')
+    
     
     

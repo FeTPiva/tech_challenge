@@ -8,10 +8,15 @@ class ConfMeLiRepository(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def gera_qr_code(self, id_pedido:int, valor:float) -> Dict:
+    def generate_qr_code(self, external_id:int) -> Dict:
         pass
     
     @abc.abstractmethod
-    def checa_pagamento(self, id_pedido:int) -> bool:
+    def verify_payment_external(self, external_id:int) -> bool:
         pass
+
+    @abc.abstractmethod
+    def create_payment(self, dados_pagamento: dict) ->int:
+          pass
+    
     
