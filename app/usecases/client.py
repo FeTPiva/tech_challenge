@@ -2,6 +2,7 @@ from datetime import datetime
 from entities.models.client import Client
 from gateway.client import ClientGateway
 from fastapi import HTTPException
+import logging
 
 
 class ClientUseCase():
@@ -10,8 +11,12 @@ class ClientUseCase():
         pass
 
     def get_all_clients(self)  -> Client | None:        
-        client_data =  ClientGateway().get_all_clients()
-
+        
+        try:
+            client_data =  ClientGateway().get_all_clients()
+        except Exception as e:
+            logging.error(e)
+            
         if client_data:            
             return client_data        
         else:      

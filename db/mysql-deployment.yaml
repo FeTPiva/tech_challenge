@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql-container
+        image: my-mysql-image
+        imagePullPolicy: Never
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "password"
+        - name: MYSQL_DATABASE
+          value: "db"
+        ports:
+        - containerPort: 3306
+        resources:
+          requests:
+            memory: "128Mi"  # Minimum memory request
+            cpu: "500m"      # Minimum CPU request
+          limits:
+            memory: "1024Mi"  # Maximum memory limit
+            cpu: "1"         # Maximum CPU limit
+          
