@@ -6,7 +6,7 @@ services:
     image: mysql:5.7
     container_name: mysql
     restart: always
-    hostname: localhost #lembrar de mudar pra test
+    hostname: localhost 
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_ROOT_PASSWORD: 'password'
