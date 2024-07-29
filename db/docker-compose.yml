@@ -1,23 +1,12 @@
 
 version: '3.3'
 
-services:
-  
-  api_tech_challenge:
-    container_name: fastapi_app
-    build: .
-    restart: always
-    ports:
-         - "8000:8000"
-    depends_on:
-      - database
-    
-
+services: 
   database:
     image: mysql:5.7
     container_name: mysql
     restart: always
-    hostname: test
+    hostname: localhost 
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_ROOT_PASSWORD: 'password'

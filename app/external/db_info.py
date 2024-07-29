@@ -4,13 +4,14 @@ import os
 from repositories.db_info import ConfDBRepository
 
 
+
 class ConfDB(ConfDBRepository):
     def __init__(self):
         pass
 
     def con_mysql(self):
-        mydb = mysql.connector.connect(
-            host="localhost",
+        mydb = mysql.connector.connect( 
+            host="mysql-service",           
             user="root",
             password="password",
             database="db"
@@ -20,10 +21,13 @@ class ConfDB(ConfDBRepository):
     
 
     def select_all_data(self, table):
-        connection = self.con_mysql()
+
+        connection = self.con_mysql()    
         cursor = connection.cursor()
+
         cursor.execute(f"SELECT * FROM {table}")
         myresult = cursor.fetchall()
+                   
         
         fields = [field_md[0] for field_md in cursor.description]
 
