@@ -11,7 +11,7 @@ class ConfDB(ConfDBRepository):
 
     def con_mysql(self):
         mydb = mysql.connector.connect( 
-            host="mysql-service",           
+            host="mysql-service",           #localhost
             user="root",
             password="password",
             database="db"
@@ -20,7 +20,7 @@ class ConfDB(ConfDBRepository):
         return mydb
     
 
-    def select_all_data(self, table):
+    def select_all_data(self, table:str):
 
         connection = self.con_mysql()    
         cursor = connection.cursor()
@@ -37,7 +37,7 @@ class ConfDB(ConfDBRepository):
             return None
 
 
-    def select_with_filter(self, table, field, value):
+    def select_with_filter(self, table:str, field:str, value):
         connection = self.con_mysql()
         cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM {table} where {field} = '{value}'")
@@ -55,9 +55,7 @@ class ConfDB(ConfDBRepository):
     
     def insert_data(self, table:str, data : dict):
         connection = self.con_mysql()
-        print(data)
-
-
+        
         fields = ','.join(str(d) for d in data.keys())
         values = "'"+"', '".join(str(v) for v in data.values())+"'"
 
@@ -67,20 +65,18 @@ class ConfDB(ConfDBRepository):
 
         return cursor.lastrowid
     
-    def delete_data(self, table:str, field, value):
+    def delete_data(self, table:str, field:str, value):
         connection = self.con_mysql()
         
         cursor = connection.cursor()
         
         cursor.execute(f"delete from {table} where {field} = {value}" )
-        
-        #print(cursor.lastrowid, cursor.rowcount, cursor.warnings) pensar boto algum erro aqui ou n
 
         connection.commit()
 
         pass
 
-    def update_data(self, table, data, filter_field, value):
+    def update_data(self, table:str, data:dict, filter_field:str, value):
         connection = self.con_mysql()
 
         cursor = connection.cursor()

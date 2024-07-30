@@ -12,7 +12,7 @@ drop table if exists cliente;
 
 drop table if exists pedido ;
 CREATE TABLE pedido(
-	  id_pedido int not null,
+	  id_pedido int not null AUTO_INCREMENT,
     dt_pedido TIMESTAMP NULL DEFAULT NULL,
     ds_status varchar(45),
     id_cliente int,
@@ -49,8 +49,9 @@ drop table if exists pagamento;
 CREATE table pagamento(
   id_pagamento int not null AUTO_INCREMENT,
   val_valor float,
-  ds_status TINYINT(1),
+  val_status TINYINT(1),
   id_pagamento_externo int,
+  id_pedido int,
   primary key(id_pagamento)
 );
 
@@ -59,7 +60,7 @@ INSERT INTO cliente
     ds_nome ,
     ds_email )
 VALUES
-  ('007.029.330-90', 'Fernanda Piva', 'xxxxx'), 
+  ('007.029.330-90', 'Fernanda Piva fake cpf', 'xxxxx@'), 
   ('080.850.056-20', 'fulanito', 'abc@abc');
 
 insert into categoria_produtos
@@ -79,12 +80,12 @@ VALUES ('x-tudo',1, 10.0, 'Melhor x-tudo do mundo'),
 
 insert into pedido (id_pedido, dt_pedido, ds_status, id_cliente, dt_atualizacao) values
 (1, CURRENT_TIMESTAMP(), 'Finalizado', 1, CURRENT_TIMESTAMP()),
-(2, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP()),
+(2, CURRENT_TIMESTAMP(), 'Aguardando Pagamento', 1, CURRENT_TIMESTAMP()),
 (3, CURRENT_TIMESTAMP(), 'Recebido', 1, CURRENT_TIMESTAMP());
 
 INSERT INTO itens_pedido (id_pedido, id_produto)
 VALUES (1,1), (1,2),(2,3), (3,1), (3,2), (3,3);
 
 
-INSERT INTO pagamento (val_valor, ds_status, id_pagamento_externo)
-VALUES (8000.5,0,1), (14.1,1,1), (22.5,1,1);
+INSERT INTO pagamento (val_valor, val_status, id_pagamento_externo, id_pedido)
+VALUES (8000.5, 1, 2, 1), (14.1, 0, 3, 2), (263.4, 1, 4, 3);

@@ -4,7 +4,7 @@ import re
 
 
 class Client(BaseModel):
-    id_cliente: Optional[int] = Field(1)
+    id_cliente: Optional[int] = Field(0)
     ds_nome: str 
     ds_cpf:str
     ds_email:str

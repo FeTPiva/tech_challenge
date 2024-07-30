@@ -1,0 +1,1075 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Tech Challenge Fase 2",
+      "version": "0.1.0"
+    },
+    "paths": {
+      "/health": {
+        "get": {
+          "tags": [
+            "Health Check"
+          ],
+          "summary": "Root",
+          "operationId": "root_health_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/client/{ds_cpf}": {
+        "get": {
+          "tags": [
+            "Cliente"
+          ],
+          "summary": "Read Client",
+          "operationId": "read_client_client__ds_cpf__get",
+          "parameters": [
+            {
+              "name": "ds_cpf",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "title": "Ds Cpf"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ReadClientResponse"
+                    },
+                    "title": "Response Read Client Client  Ds Cpf  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clients": {
+        "get": {
+          "tags": [
+            "Cliente"
+          ],
+          "summary": "Read Clients",
+          "operationId": "read_clients_clients_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/ReadClientResponse"
+                    },
+                    "type": "array",
+                    "title": "Response Read Clients Clients Get"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/client/": {
+        "post": {
+          "tags": [
+            "Cliente"
+          ],
+          "summary": "Create Client",
+          "operationId": "create_client_client__post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Client"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateClientResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/products": {
+        "get": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Read Products",
+          "operationId": "read_products_products_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/ReadProductResponse"
+                    },
+                    "type": "array",
+                    "title": "Response Read Products Products Get"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/product/{id_categoria}": {
+        "get": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Read Product",
+          "operationId": "read_product_product__id_categoria__get",
+          "parameters": [
+            {
+              "name": "id_categoria",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Id Categoria"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ReadProductResponse"
+                    },
+                    "title": "Response Read Product Product  Id Categoria  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/product/{id_produto}": {
+        "get": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Read Product",
+          "operationId": "read_product_product__id_produto__get",
+          "parameters": [
+            {
+              "name": "id_produto",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Id Produto"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ReadProductResponse"
+                    },
+                    "title": "Response Read Product Product  Id Produto  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/product/": {
+        "post": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Create Product",
+          "operationId": "create_product_product__post",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateProductResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Update Product",
+          "operationId": "update_product_product__put",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AlterProductResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Produtos"
+          ],
+          "summary": "Delete Product",
+          "operationId": "delete_product_product__delete",
+          "parameters": [
+            {
+              "name": "id_produto",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Id Produto"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AlterProductResponse"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/orders": {
+        "get": {
+          "tags": [
+            "Pedido"
+          ],
+          "summary": "Read Orders",
+          "operationId": "read_orders_orders_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "type": "array",
+                    "title": "Response Read Orders Orders Get"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/order/{id_order}": {
+        "get": {
+          "tags": [
+            "Pedido"
+          ],
+          "summary": "Read Order",
+          "operationId": "read_order_order__id_order__get",
+          "parameters": [
+            {
+              "name": "id_order",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Id Order"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "title": "Response Read Order Order  Id Order  Get"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/order/": {
+        "post": {
+          "tags": [
+            "Pedido"
+          ],
+          "summary": "Create Order",
+          "operationId": "create_order_order__post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Body_create_order_order__post"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/order/status": {
+        "put": {
+          "tags": [
+            "Pedido"
+          ],
+          "summary": "Update Order Status",
+          "operationId": "update_order_status_order_status_put",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/orders/details/sorted": {
+        "get": {
+          "tags": [
+            "Pedido"
+          ],
+          "summary": "Read Orders",
+          "operationId": "read_orders_orders_details_sorted_get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "items": {
+                      "$ref": "#/components/schemas/Order"
+                    },
+                    "type": "array",
+                    "title": "Response Read Orders Orders Details Sorted Get"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment/": {
+        "get": {
+          "tags": [
+            "Pagamento"
+          ],
+          "summary": "Get All Payments",
+          "operationId": "get_all_payments_payment__get",
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Pagamento"
+          ],
+          "summary": "Create Payment",
+          "operationId": "create_payment_payment__post",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Payment"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "integer",
+                    "title": "Response Create Payment Payment  Post"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment/{id_pedido}": {
+        "get": {
+          "tags": [
+            "Pagamento"
+          ],
+          "summary": "Get Payment Status",
+          "operationId": "get_payment_status_payment__id_pedido__get",
+          "parameters": [
+            {
+              "name": "id_pedido",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "Id Pedido"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/payment/webhook/{external_id}": {
+        "put": {
+          "tags": [
+            "Pagamento"
+          ],
+          "summary": "Webhook",
+          "operationId": "webhook_payment_webhook__external_id__put",
+          "parameters": [
+            {
+              "name": "external_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "title": "External Id"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful Response",
+              "content": {
+                "application/json": {
+                  "schema": {
+  
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/HTTPValidationError"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AlterProductResponse": {
+          "properties": {
+            "response": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Response",
+              "default": "null"
+            }
+          },
+          "type": "object",
+          "title": "AlterProductResponse"
+        },
+        "Body_create_order_order__post": {
+          "properties": {
+            "order": {
+              "$ref": "#/components/schemas/Order"
+            },
+            "product": {
+              "items": {
+                "$ref": "#/components/schemas/ProductOrder"
+              },
+              "type": "array",
+              "title": "Product"
+            }
+          },
+          "type": "object",
+          "required": [
+            "order",
+            "product"
+          ],
+          "title": "Body_create_order_order__post"
+        },
+        "Client": {
+          "properties": {
+            "id_cliente": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Cliente",
+              "default": 0
+            },
+            "ds_nome": {
+              "type": "string",
+              "title": "Ds Nome"
+            },
+            "ds_cpf": {
+              "type": "string",
+              "title": "Ds Cpf"
+            },
+            "ds_email": {
+              "type": "string",
+              "title": "Ds Email"
+            }
+          },
+          "type": "object",
+          "required": [
+            "ds_nome",
+            "ds_cpf",
+            "ds_email"
+          ],
+          "title": "Client"
+        },
+        "CreateClientResponse": {
+          "properties": {
+            "id_cliente": {
+              "type": "integer",
+              "title": "Id Cliente"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id_cliente"
+          ],
+          "title": "CreateClientResponse"
+        },
+        "CreateProductResponse": {
+          "properties": {
+            "id_produto": {
+              "type": "integer",
+              "title": "Id Produto"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id_produto"
+          ],
+          "title": "CreateProductResponse"
+        },
+        "HTTPValidationError": {
+          "properties": {
+            "detail": {
+              "items": {
+                "$ref": "#/components/schemas/ValidationError"
+              },
+              "type": "array",
+              "title": "Detail"
+            }
+          },
+          "type": "object",
+          "title": "HTTPValidationError"
+        },
+        "Order": {
+          "properties": {
+            "id_pedido": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Pedido",
+              "default": 10
+            },
+            "ds_status": {
+              "type": "string",
+              "title": "Ds Status"
+            },
+            "dt_pedido": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dt Pedido",
+              "default": "2024-07-30T22:02:15.117698"
+            },
+            "id_cliente": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Cliente",
+              "default": 1
+            },
+            "dt_atualizacao": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dt Atualizacao",
+              "default": "2024-07-30T22:02:15.117933"
+            }
+          },
+          "type": "object",
+          "required": [
+            "ds_status"
+          ],
+          "title": "Order"
+        },
+        "Payment": {
+          "properties": {
+            "id_pagamento": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Pagamento",
+              "default": 0
+            },
+            "val_valor": {
+              "type": "number",
+              "title": "Val Valor"
+            },
+            "val_status": {
+              "type": "integer",
+              "title": "Val Status"
+            },
+            "id_pagamento_externo": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Pagamento Externo",
+              "default": 1
+            },
+            "id_pedido": {
+              "type": "integer",
+              "title": "Id Pedido"
+            }
+          },
+          "type": "object",
+          "required": [
+            "val_valor",
+            "val_status",
+            "id_pedido"
+          ],
+          "title": "Payment"
+        },
+        "Product": {
+          "properties": {
+            "id_produto": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Id Produto",
+              "default": 1
+            },
+            "ds_nome": {
+              "type": "string",
+              "title": "Ds Nome"
+            },
+            "id_categoria": {
+              "type": "integer",
+              "title": "Id Categoria",
+              "default": 1
+            },
+            "val_preco": {
+              "type": "number",
+              "title": "Val Preco",
+              "default": 10
+            },
+            "ds_descricao": {
+              "type": "string",
+              "title": "Ds Descricao"
+            }
+          },
+          "type": "object",
+          "required": [
+            "ds_nome",
+            "ds_descricao"
+          ],
+          "title": "Product"
+        },
+        "ProductOrder": {
+          "properties": {
+            "id_produto": {
+              "type": "integer",
+              "title": "Id Produto"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id_produto"
+          ],
+          "title": "ProductOrder"
+        },
+        "ReadClientResponse": {
+          "properties": {
+            "id_cliente": {
+              "type": "integer",
+              "title": "Id Cliente"
+            },
+            "ds_nome": {
+              "type": "string",
+              "title": "Ds Nome"
+            },
+            "ds_cpf": {
+              "type": "string",
+              "title": "Ds Cpf"
+            },
+            "ds_email": {
+              "type": "string",
+              "title": "Ds Email"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id_cliente",
+            "ds_nome",
+            "ds_cpf",
+            "ds_email"
+          ],
+          "title": "ReadClientResponse"
+        },
+        "ReadProductResponse": {
+          "properties": {
+            "id_produto": {
+              "type": "integer",
+              "title": "Id Produto"
+            },
+            "ds_nome": {
+              "type": "string",
+              "title": "Ds Nome"
+            },
+            "id_categoria": {
+              "type": "integer",
+              "title": "Id Categoria"
+            },
+            "val_preco": {
+              "type": "number",
+              "title": "Val Preco"
+            },
+            "ds_descricao": {
+              "type": "string",
+              "title": "Ds Descricao"
+            }
+          },
+          "type": "object",
+          "required": [
+            "id_produto",
+            "ds_nome",
+            "id_categoria",
+            "val_preco",
+            "ds_descricao"
+          ],
+          "title": "ReadProductResponse"
+        },
+        "ValidationError": {
+          "properties": {
+            "loc": {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "type": "array",
+              "title": "Location"
+            },
+            "msg": {
+              "type": "string",
+              "title": "Message"
+            },
+            "type": {
+              "type": "string",
+              "title": "Error Type"
+            }
+          },
+          "type": "object",
+          "required": [
+            "loc",
+            "msg",
+            "type"
+          ],
+          "title": "ValidationError"
+        }
+      }
+    }
+  }
