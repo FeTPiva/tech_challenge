@@ -22,7 +22,7 @@ Acessando o swagger
 
 Video
 
-``` https://youtu.be/DTyk33wOEAU ```
+``` https://youtu.be/RqmwtUJ_qmw ```
 
 
 ## Arquitetura
