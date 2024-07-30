@@ -4,7 +4,6 @@ from entities.models.order import Order
 from entities.models.product import ProductOrder
 from fastapi import APIRouter
 from typing import List, Dict
-from entities.response_models.order import *
 from fastapi import APIRouter
 
 
@@ -31,6 +30,6 @@ def update_order_status(order:Order):
     return {"response": resp}
 
 
-@router.get("/orders/sorted", response_model=List[Order])
+@router.get("/orders/details/sorted", response_model=List[Order])
 def read_orders():
     return OrderUseCase().get_all_orders_ordered()

@@ -48,7 +48,7 @@ class ProductUseCase():
         return ProductGateway().update_product(insert_product)
 
     
-    def delete_product(self, id_produto: int):
+    def delete_product(self, id_produto: int) -> None:
         return ProductGateway().delete_product(id_produto)
 
 
