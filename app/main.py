@@ -15,4 +15,3 @@ fast_app.include_router(product.router)
 fast_app.include_router(order.router)
 
 
-

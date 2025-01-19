@@ -1,4 +1,5 @@
 import mysql.connector
+import os
 
 
 class conf_db():
@@ -7,10 +8,10 @@ class conf_db():
 
     def con_mysql(self):
         mydb = mysql.connector.connect(
-            host="test",
-            user="root",
-            password="password",
-            database="db"
+            host=os.getenv('HOST'),
+            user=os.getenv('USER'),
+            password=os.getenv('PASS'),
+            database=os.getenv('DB')
             )
         
         return mydb
